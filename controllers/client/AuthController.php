@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../../models/User.php';
 
 class ClientAuthController {
-    private $userModel;
+    private User $userModel;
 
     public function __construct() {
         $this->userModel = new User();

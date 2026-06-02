@@ -16,7 +16,22 @@ if (!function_exists('redirect')) {
 
 if (!function_exists('asset')) {
     function asset($path) {
-        return BASE_URL . $path;
+        $path = trim($path);
+        if ($path === '') {
+            return BASE_URL;
+        }
+
+        if (preg_match('#^(https?:)?//#i', $path)) {
+            return $path;
+        }
+
+        $normalized = ltrim($path, '/');
+
+        if (strpos($normalized, 'assets/') === 0 || strpos($normalized, 'uploads/') === 0 || strpos($normalized, 'images/') === 0) {
+            return BASE_URL . $normalized;
+        }
+
+        return BASE_URL . 'assets/images/' . $normalized;
     }
 }
 

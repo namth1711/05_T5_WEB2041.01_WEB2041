@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../../models/Comment.php';
 
 class ClientCommentController {
-    private $commentModel;
+    private Comment $commentModel;
 
     public function __construct() {
         $this->commentModel = new Comment();

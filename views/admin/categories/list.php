@@ -1,3 +1,4 @@
+<?php /** @var array $categories */ ?>
 <div class="space-y-6 text-left">
     
     

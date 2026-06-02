@@ -1,3 +1,10 @@
+
+<?php /** @var int $totalProducts */
+/** @var int $totalCategories */
+/** @var int $totalUsers */
+/** @var int $totalComments */
+/** @var array $categoryStats */
+/** @var array $commentStats */ ?>
 <div class="space-y-8 text-left">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white p-6 rounded-2xl border border-slate-150 shadow-sm flex items-center justify-between">

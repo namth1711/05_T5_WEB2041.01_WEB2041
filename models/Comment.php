@@ -45,7 +45,7 @@ class Comment extends BaseModel {
     }
 
     
-    public function delete($id) {
+    public function delete(int $id) {
         $sql = "DELETE FROM comments WHERE id = ?";
         return $this->execute($sql, [$id]);
     }

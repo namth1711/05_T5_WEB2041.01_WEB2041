@@ -1,4 +1,7 @@
 
+<?php /** @var array $categories */
+/** @var array $featured */
+/** @var array $latest */ ?>
 <div class="relative bg-slate-900 overflow-hidden mb-12">
     <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center opacity-25"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10 text-left text-white space-y-6">

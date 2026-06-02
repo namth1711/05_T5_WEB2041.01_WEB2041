@@ -1,3 +1,4 @@
+<?php /** @var array $categories */ ?>
 <div class="max-w-2xl mx-auto py-4 text-left">
     <div class="space-y-6">
         

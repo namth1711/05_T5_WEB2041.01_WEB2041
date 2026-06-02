@@ -1,3 +1,6 @@
+<?php /** @var array $user */
+/** @var string|null $error */
+/** @var string|null $success */ ?>
 <div class="max-w-4xl mx-auto px-4 py-10">
     <div class="space-y-8 text-left">
         <div>

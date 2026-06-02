@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../../models/Comment.php';
 
 class AdminCommentController {
-    private $commentModel;
+    private Comment $commentModel;
 
     public function __construct() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {

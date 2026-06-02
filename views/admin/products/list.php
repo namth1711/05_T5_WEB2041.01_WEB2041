@@ -1,5 +1,5 @@
+<?php /** @var array $products */ ?>
 <div class="space-y-6 text-left">
-    
     
     <div class="flex items-center justify-between">
         <div>

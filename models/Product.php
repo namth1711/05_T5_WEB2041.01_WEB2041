@@ -51,7 +51,7 @@ class Product extends BaseModel {
         return $this->getAll($sql, [$searchTerm, $searchTerm]);
     }
 
-    public function find($id) {
+    public function find(int $id) {
         $sql = "SELECT p.*, c.name as category_name 
                 FROM products p 
                 LEFT JOIN categories c ON p.category_id = c.id 
@@ -65,7 +65,7 @@ class Product extends BaseModel {
         return $this->execute($sql, [$name, $price, $image, $description, $category_id]);
     }
 
-    public function update($id, $name, $price, $image, $description, $category_id) {
+    public function update(int $id, $name, $price, $image, $description, $category_id) {
         if ($image != null) {
             $sql = "UPDATE products SET name = ?, price = ?, image = ?, description = ?, category_id = ? 
                     WHERE id = ?";
@@ -77,12 +77,12 @@ class Product extends BaseModel {
         }
     }
 
-    public function incrementViews($id) {
+    public function incrementViews(int $id) {
         $sql = "UPDATE products SET views = views + 1 WHERE id = ?";
         return $this->execute($sql, [$id]);
     }
 
-    public function delete($id) {
+    public function delete(int $id) {
         $sql = "DELETE FROM products WHERE id = ?";
         return $this->execute($sql, [$id]);
     }

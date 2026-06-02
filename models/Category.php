@@ -21,7 +21,7 @@ class Category extends BaseModel {
     }
 
     
-    public function find($id) {
+    public function find(int $id) {
         $sql = "SELECT * FROM categories WHERE id = ?";
         return $this->getOne($sql, [$id]);
     }
@@ -33,13 +33,13 @@ class Category extends BaseModel {
     }
 
     
-    public function update($id, $name, $description = '') {
+    public function update(int $id, $name, $description = '') {
         $sql = "UPDATE categories SET name = ?, description = ? WHERE id = ?";
         return $this->execute($sql, [$name, $description, $id]);
     }
 
     
-    public function delete($id) {
+    public function delete(int $id) {
         $sql = "DELETE FROM categories WHERE id = ?";
         return $this->execute($sql, [$id]);
     }

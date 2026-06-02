@@ -1,3 +1,5 @@
+<?php /** @var array $category */
+/** @var string|null $error */ ?>
 <div class="max-w-xl mx-auto py-4 text-left">
     <div class="space-y-6">
         

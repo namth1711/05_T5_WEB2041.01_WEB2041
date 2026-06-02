@@ -5,8 +5,8 @@ require_once __DIR__ . '/../../models/Category.php';
 require_once __DIR__ . '/../../models/Product.php';
 
 class ClientFavoriteController {
-    private $categoryModel;
-    private $productModel;
+    private Category $categoryModel;
+    private Product $productModel;
 
     public function __construct() {
         $this->categoryModel = new Category();

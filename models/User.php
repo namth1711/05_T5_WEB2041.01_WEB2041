@@ -11,13 +11,13 @@ class User extends BaseModel {
     }
 
     
-    public function find($id) {
+    public function find(int $id) {
         $sql = "SELECT * FROM users WHERE id = ?";
         return $this->getOne($sql, [$id]);
     }
 
     
-    public function login($username, $password) {
+    public function login(string $username, string $password) {
         $sql = "SELECT * FROM users WHERE username = ? AND status = 1";
         $user = $this->getOne($sql, [$username]);
         if ($user && password_verify($password, $user['password'])) {
@@ -27,7 +27,7 @@ class User extends BaseModel {
     }
 
     
-    public function register($username, $password, $email, $fullname = '', $avatar = 'assets/uploads/default-avatar.png') {
+    public function register(string $username, string $password, string $email, $fullname = '', $avatar = 'assets/uploads/default-avatar.png') {
         // Mã hóa mật khẩu bảo mật bămbcrypt
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
         
@@ -50,7 +50,7 @@ class User extends BaseModel {
     }
 
     
-    public function updateProfile($id, $fullname, $email, $avatar = null) {
+    public function updateProfile(int $id, $fullname, $email, $avatar = null) {
         if ($avatar !== null) {
             $sql = "UPDATE users SET fullname = ?, email = ?, avatar = ? WHERE id = ?";
             return $this->execute($sql, [$fullname, $email, $avatar, $id]);
@@ -61,14 +61,14 @@ class User extends BaseModel {
     }
 
     
-    public function updatePassword($id, $newPassword) {
+    public function updatePassword(int $id, string $newPassword) {
         $hashed_password = password_hash($newPassword, PASSWORD_BCRYPT);
         $sql = "UPDATE users SET password = ? WHERE id = ?";
         return $this->execute($sql, [$hashed_password, $id]);
     }
 
     
-    public function updateFromAdmin($id, $fullname, $email, $role, $status) {
+    public function updateFromAdmin(int $id, $fullname, $email, $role, $status) {
         $sql = "UPDATE users SET fullname = ?, email = ?, role = ?, status = ? WHERE id = ?";
         return $this->execute($sql, [$fullname, $email, $role, $status, $id]);
     }
@@ -81,7 +81,7 @@ class User extends BaseModel {
     }
 
     
-    public function delete($id) {
+    public function delete(int $id) {
         $sql = "DELETE FROM users WHERE id = ?";
         return $this->execute($sql, [$id]);
     }

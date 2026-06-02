@@ -1,3 +1,5 @@
+<?php /** @var array $product */ ?>
+<?php /** @var array $categories */ ?>
 <div class="max-w-ui mx-auto py-4 text-left">
     <div class="space-y-6">
         

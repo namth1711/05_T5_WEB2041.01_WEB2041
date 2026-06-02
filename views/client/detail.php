@@ -1,3 +1,6 @@
+<?php /** @var array $product */
+/** @var array $comments */
+/** @var array $related */ ?>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <div class="space-y-12 text-left">
         

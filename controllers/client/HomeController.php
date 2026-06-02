@@ -6,9 +6,9 @@ require_once __DIR__ . '/../../models/Product.php';
 require_once __DIR__ . '/../../models/Comment.php';
 
 class ClientHomeController {
-    private $categoryModel;
-    private $productModel;
-    private $commentModel;
+    private Category $categoryModel;
+    private Product $productModel;
+    private Comment $commentModel;
 
     public function __construct() {
         $this->categoryModel = new Category();

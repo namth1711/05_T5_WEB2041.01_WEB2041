@@ -1,3 +1,4 @@
+<?php /** @var array $users */ ?>
 <div class="space-y-6 text-left">
     
     

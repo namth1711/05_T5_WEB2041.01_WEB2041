@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../../models/User.php';
 
 class AdminUserController {
-    private $userModel;
+    private User $userModel;
 
     public function __construct() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {

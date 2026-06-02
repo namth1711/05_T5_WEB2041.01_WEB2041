@@ -7,10 +7,10 @@ require_once __DIR__ . '/../../models/User.php';
 require_once __DIR__ . '/../../models/Comment.php';
 
 class AdminDashboardController {
-    private $categoryModel;
-    private $productModel;
-    private $userModel;
-    private $commentModel;
+    private Category $categoryModel;
+    private Product $productModel;
+    private User $userModel;
+    private Comment $commentModel;
 
     public function __construct() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {

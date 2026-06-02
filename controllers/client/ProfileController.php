@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../../models/User.php';
 
 class ClientProfileController {
-    private $userModel;
+    private User $userModel;
 
     public function __construct() {
         if (!isset($_SESSION['user'])) {

@@ -5,8 +5,8 @@ require_once __DIR__ . '/../../models/Category.php';
 require_once __DIR__ . '/../../models/Product.php';
 
 class AdminProductController {
-    private $categoryModel;
-    private $productModel;
+    private Category $categoryModel;
+    private Product $productModel;
 
     public function __construct() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {
@@ -31,14 +31,14 @@ class AdminProductController {
             $category_id = intval($_POST['category_id']);
             $description = trim($_POST['description']);
             
-            // Xử lý upload ảnh vào thư mục assets/uploads/
+            // Xử lý upload ảnh sản phẩm vào thư mục assets/images/
             $image = 'assets/uploads/default-product.png';
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = 'assets/uploads/';
+                $uploadDir = 'assets/images/';
                 $fileName = time() . '_' . basename($_FILES['image']['name']);
                 $targetPath = $uploadDir . $fileName;
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
-                    $image = $targetPath;
+                    $image = $fileName;
                 }
             }
             
@@ -68,11 +68,11 @@ class AdminProductController {
             
             $image = null;
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                $uploadDir = 'assets/uploads/';
+                $uploadDir = 'assets/images/';
                 $fileName = time() . '_' . basename($_FILES['image']['name']);
                 $targetPath = $uploadDir . $fileName;
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
-                    $image = $targetPath;
+                    $image = $fileName;
                 }
             }
             
