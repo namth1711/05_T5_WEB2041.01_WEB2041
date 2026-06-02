@@ -90,7 +90,7 @@ $viewFile = $viewFile ?? '';
         </main>
 
         <footer class="bg-white border-t border-slate-200 py-4 px-8 text-center text-xs text-slate-400">
-            &copy; WEB2041.01 - PolyShop Admin Dashboard. Thực hiện bởi SV: NAMTHPH69887
+            &copy;PolyShop Admin Dashboard. Thực hiện bởi SV: NAMTHPH69887
         </footer>
     </div>
 

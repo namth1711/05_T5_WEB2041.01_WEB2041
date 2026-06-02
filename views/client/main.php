@@ -74,7 +74,7 @@ $viewFile = $viewFile ?? '';
             <div class="space-y-4">
                 <span class="text-2xl font-black text-rose-500">Poly<span class="text-white">Shop</span></span>
                 <p class="text-xs text-gray-500">Hệ thống phân phối và giới thiệu sản phẩm công nghệ tiên tiến hàng đầu Việt Nam.</p>
-                <p class="text-xs text-gray-500">Mã SV: NAMTHPH69887 | Lớp: WEB2041.01</p>
+                <p class="text-xs text-gray-500">Mã SV: NAMTHPH69887</p>
             </div>
             <div>
                 <h4 class="text-white text-sm font-semibold mb-3">Về PolyShop</h4>
@@ -102,7 +102,7 @@ $viewFile = $viewFile ?? '';
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-gray-900 text-center text-xs text-gray-600">
-            &copy; <?= date('Y') ?> PolyShop. Dự án học tập thuộc môn Dự án mẫu (WEB2041.01). Thực hiện bởi NAMTHPH69887.
+            &copy; <?= date('Y') ?> PolyShop. Dự án học tập. Thực hiện bởi NAMTHPH69887.
         </div>
     </footer>
 
