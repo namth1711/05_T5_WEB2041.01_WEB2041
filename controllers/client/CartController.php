@@ -36,6 +36,42 @@ class ClientCartController {
         ], 'client/main.php');
     }
 
+
+    public function placeOrder() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            redirect(BASE_URL . '?act=cart');
+        }
+
+        $name = isset($_POST['name']) ? trim($_POST['name']) : '';
+        $phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+        $address = isset($_POST['address']) ? trim($_POST['address']) : '';
+
+        // Basic validation
+        if (empty($phone) || empty($address)) {
+            $_SESSION['checkout_error'] = 'Vui lòng nhập SĐT và Địa chỉ nhận hàng!';
+            redirect(BASE_URL . '?act=cart');
+        }
+
+        // Vietnamese mobile phone basic pattern: 10 digits starting with 0 and a valid provider prefix
+        $phonePattern = '/^0(3|5|7|8|9)\d{8}$/';
+        if (!preg_match($phonePattern, $phone)) {
+            $_SESSION['checkout_error'] = 'Số điện thoại không đúng định dạng. Ví dụ hợp lệ: 09xxxxxxxx.';
+            redirect(BASE_URL . '?act=cart');
+        }
+
+        // Ensure cart not empty
+        $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+        if (empty($cart)) {
+            $_SESSION['checkout_error'] = 'Giỏ hàng rỗng, không thể đặt hàng.';
+            redirect(BASE_URL . '?act=cart');
+        }
+
+        // Simulate order processing (no DB order persistence in this project scope)
+        unset($_SESSION['cart']);
+        $_SESSION['checkout_success'] = 'Đặt hàng thành công! Chúng tôi sẽ gọi xác nhận tới SĐT ' . htmlspecialchars($phone);
+        redirect(BASE_URL . '?act=cart');
+    }
+
     
     public function addToCart() {
         $productId = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;

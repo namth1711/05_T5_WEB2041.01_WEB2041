@@ -130,48 +130,67 @@
                         
                         <div class="space-y-3 pt-3 border-t text-xs text-slate-650">
                             <p class="font-bold text-slate-705 uppercase tracking-wider text-[10px]">Thông Tin Giao Nhận Mô Phỏng</p>
-                            
-                            <div class="space-y-1">
-                                <label class="font-bold text-slate-450">Tên người nhận</label>
-                                <input 
-                                    type="text" 
-                                    value="<?= htmlspecialchars(isset($_SESSION['user']) ? $_SESSION['user']['fullname'] : 'Nguyễn Khách Hàng') ?>"
-                                    required
-                                    id="php_checkout_name"
-                                    class="w-full border px-3 py-2 rounded-lg bg-slate-50 outline-none focus:border-emerald-500 font-medium"
-                                />
-                            </div>
+                            <?php if (!empty($_SESSION['checkout_error'])): ?>
+                                <div class="bg-rose-50 border border-rose-100 p-3.5 rounded-xl flex items-start gap-2 text-rose-700 text-xs font-semibold">
+                                    <i data-lucide="alert-circle" class="w-4.5 h-4.5 flex-shrink-0 text-rose-500 mt-0.5"></i>
+                                    <span><?= htmlspecialchars($_SESSION['checkout_error']) ?></span>
+                                </div>
+                                <?php unset($_SESSION['checkout_error']); ?>
+                            <?php endif; ?>
 
-                            <div class="space-y-1">
-                                <label class="font-bold text-slate-450">Số điện thoại liên lạc</label>
-                                <input 
-                                    type="tel" 
-                                    placeholder="09xx xxx xxx"
-                                    required
-                                    id="php_checkout_phone"
-                                    class="w-full border px-3 py-2 rounded-lg bg-slate-50 outline-none focus:border-emerald-500"
-                                />
-                            </div>
+                            <?php if (!empty($_SESSION['checkout_success'])): ?>
+                                <div class="bg-emerald-50 border border-emerald-100 p-3.5 rounded-xl flex items-start gap-2 text-emerald-700 text-xs font-semibold">
+                                    <i data-lucide="check-circle" class="w-4.5 h-4.5 flex-shrink-0 text-emerald-500 mt-0.5"></i>
+                                    <span><?= htmlspecialchars($_SESSION['checkout_success']) ?></span>
+                                </div>
+                                <?php unset($_SESSION['checkout_success']); ?>
+                            <?php endif; ?>
 
-                            <div class="space-y-1">
-                                <label class="font-bold text-slate-450 font-sans">Địa chỉ nhận hàng thực tế</label>
-                                <textarea 
-                                    rows="2"
-                                    placeholder="Tòa nhà T, Công viên phần mềm Quang Trung, Quận 12..."
-                                    required
-                                    id="php_checkout_address"
-                                    class="w-full border p-3 py-2 rounded-lg bg-slate-50 outline-none focus:border-emerald-500"
-                                >Địa điểm dạy học trường cao đẳng FPT Polytechnic...</textarea>
-                            </div>
+                            <form id="checkout_form" action="<?= BASE_URL ?>?act=place-order" method="POST" onsubmit="return validateCheckoutForm()">
+                                <div class="space-y-1">
+                                    <label class="font-bold text-slate-450">Tên người nhận</label>
+                                    <input 
+                                        type="text" 
+                                        name="name"
+                                        value="<?= htmlspecialchars(isset($_SESSION['user']) ? $_SESSION['user']['fullname'] : 'Nguyễn Khách Hàng') ?>"
+                                        required
+                                        id="php_checkout_name"
+                                        class="w-full border px-3 py-2 rounded-lg bg-slate-50 outline-none focus:border-emerald-500 font-medium"
+                                    />
+                                </div>
 
-                            <button 
-                                type="button" 
-                                onclick="submitPHPCheckout(<?= $totalPayment ?>)"
-                                class="w-full bg-rose-500 text-white hover:bg-rose-600 transition font-bold py-3.5 rounded-xl uppercase tracking-wider text-xs shadow-md mt-2 flex items-center justify-center space-x-1.5"
-                            >
-                                <i data-lucide="check-circle" class="w-4 h-4"></i>
-                                <span>Gửi đơn hàng PHP 🚀</span>
-                            </button>
+                                <div class="space-y-1">
+                                    <label class="font-bold text-slate-450">Số điện thoại liên lạc</label>
+                                    <input 
+                                        type="tel" 
+                                        name="phone"
+                                        placeholder="09xxxxxxxx"
+                                        required
+                                        id="php_checkout_phone"
+                                        class="w-full border px-3 py-2 rounded-lg bg-slate-50 outline-none focus:border-emerald-500"
+                                    />
+                                </div>
+
+                                <div class="space-y-1">
+                                    <label class="font-bold text-slate-450 font-sans">Địa chỉ nhận hàng thực tế</label>
+                                    <textarea 
+                                        rows="2"
+                                        name="address"
+                                        placeholder="Tòa nhà T, Công viên phần mềm Quang Trung, Quận 12..."
+                                        required
+                                        id="php_checkout_address"
+                                        class="w-full border p-3 py-2 rounded-lg bg-slate-50 outline-none focus:border-emerald-500"
+                                    ></textarea>
+                                </div>
+
+                                <button 
+                                    type="submit"
+                                    class="w-full bg-rose-500 text-white hover:bg-rose-600 transition font-bold py-3.5 rounded-xl uppercase tracking-wider text-xs shadow-md mt-2 flex items-center justify-center space-x-1.5"
+                                >
+                                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    <span>Gửi đơn hàng PHP 🚀</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -205,26 +224,25 @@
         if (val > 99) val = 99;
         input.value = val;
     }
+    function validateCheckoutForm() {
+        var phoneInput = document.getElementById('php_checkout_phone');
+        var addressInput = document.getElementById('php_checkout_address');
 
-    function submitPHPCheckout(totalAmount) {
-        var name = document.getElementById('php_checkout_name').value;
-        var phone = document.getElementById('php_checkout_phone').value;
-        var address = document.getElementById('php_checkout_address').value;
+        var phone = phoneInput ? phoneInput.value.trim() : '';
+        var address = addressInput ? addressInput.value.trim() : '';
 
-        if (!phone.trim() || !address.trim()) {
-            alert('Vui lòng điền Số điện thoại nhận hàng và Địa chỉ nhận hàng thực tế!');
-            return;
+        if (!phone || !address) {
+            alert('Vui lòng điền Số điện thoại nhận hàng và Địa chỉ nhận hàng!');
+            return false;
         }
 
-        alert('🎉 THỰC THI HOÀN TẤT ĐẶT ĐƠN HÀNG PHP THÀNH CÔNG!\n\n' +
-              'Tên người nhận: ' + name + '\n' +
-              'Số điện thoại: ' + phone + '\n' +
-              'Địa chỉ nhận: ' + address + '\n' +
-              'Tổng giá trị thanh toán ảo: ' + totalAmount.toLocaleString('vi-VN') + ' ₫\n\n' +
-              'Hệ thống PHP ảo đã ghi nhận đơn hàng cho bạn! PolyShop hân hạnh được phục vụ.');
-              
-        // Redirect to clear simulated PHP cart
-        window.location.href = '<?= BASE_URL ?>?act=update-cart&clear=all';
+        var phoneRegex = /^0(3|5|7|8|9)\d{8}$/;
+        if (!phoneRegex.test(phone)) {
+            alert('Số điện thoại không hợp lệ. Vui lòng nhập định dạng: 09xxxxxxxx');
+            return false;
+        }
+
+        return true; // allow form submission
     }
 </script>
 

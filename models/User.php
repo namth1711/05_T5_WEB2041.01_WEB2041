@@ -27,7 +27,7 @@ class User extends BaseModel {
     }
 
     
-    public function register(string $username, string $password, string $email, $fullname = '', $avatar = 'assets/uploads/default-avatar.png') {
+    public function register(string $username, string $password, string $email, $fullname = '', $avatar = 'assets/uploads/account_icon.jpg') {
         // Mã hóa mật khẩu bảo mật bămbcrypt
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
         

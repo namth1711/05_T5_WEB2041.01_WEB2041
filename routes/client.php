@@ -57,6 +57,10 @@ switch ($action) {
         $cartController->updateCart();
         break;
 
+    case 'place-order':
+        $cartController->placeOrder();
+        break;
+
     case 'remove-from-cart':
         $cartController->removeFromCart();
         break;

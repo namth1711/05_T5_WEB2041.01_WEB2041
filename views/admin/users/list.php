@@ -32,7 +32,7 @@
                         <tr class="hover:bg-slate-55/40 transition">
                             <td class="p-4 pl-6 text-center font-mono font-bold text-slate-400"><?= $user['id'] ?></td>
                             <td class="p-4">
-                                <img src="<?= asset($user['avatar'] ?: 'assets/uploads/default-avatar.png') ?>" alt="User" class="w-8 h-8 rounded-full border object-cover bg-slate-50" />
+                                <img src="<?= asset($user['avatar'] ?: 'assets/uploads/admin_icon.jpg') ?>" alt="User" class="w-8 h-8 rounded-full border object-cover bg-slate-50" />
                             </td>
                             <td class="p-4 font-bold text-slate-850 font-mono"><?= htmlspecialchars($user['username']) ?></td>
                             <td class="p-4 font-medium text-slate-500"><?= htmlspecialchars($user['email']) ?></td>

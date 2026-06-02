@@ -26,7 +26,7 @@
             
             <div class="md:col-span-1 bg-white p-6 rounded-2xl border border-slate-150 shadow-sm flex flex-col items-center justify-center text-center space-y-4">
                 <div class="w-28 h-28 rounded-full overflow-hidden border-2 border-rose-500 shadow relative group">
-                    <img src="<?= asset($user['avatar'] ?: 'assets/uploads/default-avatar.png') ?>" alt="User Avatar" class="w-full h-full object-cover" />
+                    <img src="<?= asset($user['avatar'] ?: 'assets/uploads/account_icon.jpg') ?>" alt="User Avatar" class="w-full h-full object-cover" />
                 </div>
                 <div class="space-y-1">
                     <h3 class="font-extrabold text-sm text-slate-800"><?= htmlspecialchars($user['fullname'] ?: $user['username']) ?></h3>
