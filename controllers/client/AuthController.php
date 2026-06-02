@@ -77,7 +77,9 @@ class ClientAuthController {
 
     
     public function logout() {
-        unset($_SESSION['user']);
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
         session_destroy();
         redirect(BASE_URL . '?act=home');
     }

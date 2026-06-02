@@ -72,13 +72,17 @@ class ClientCartController {
                 $productId = intval($productId);
                 $qty = intval($qty);
                 if ($qty <= 0) {
-                    unset($_SESSION['cart'][$productId]);
+                    if (isset($_SESSION['cart'][$productId])) {
+                        unset($_SESSION['cart'][$productId]);
+                    }
                 } else {
                     $_SESSION['cart'][$productId] = min(99, $qty);
                 }
             }
         } elseif (isset($_GET['clear']) && $_GET['clear'] === 'all') {
-            unset($_SESSION['cart']);
+            if (isset($_SESSION['cart'])) {
+                unset($_SESSION['cart']);
+            }
         }
         redirect(BASE_URL . "?act=cart");
     }
