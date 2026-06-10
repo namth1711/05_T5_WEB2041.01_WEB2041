@@ -1,8 +1,6 @@
 ﻿<?php
-
 $viewContent = $viewContent ?? '';
 $viewFile = $viewFile ?? '';
-
 ?>
 <!DOCTYPE html>
 <html lang="vi">

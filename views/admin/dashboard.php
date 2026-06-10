@@ -1,4 +1,3 @@
-
 <?php /** @var int $totalProducts */
 /** @var int $totalCategories */
 /** @var int $totalUsers */
